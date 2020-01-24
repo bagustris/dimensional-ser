@@ -1,7 +1,7 @@
 # Dimensional Speech Emotion Recognition Using Acoustic Features and Word Embeddings using Multitask Learning
 
 by
-Bagus Tris Atmaja
+Bagus Tris Atmaja,
 Masato Akagi
 
 > This is a template for papers that use Python code and Jupyter notebooks to
