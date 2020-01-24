@@ -1,9 +1,8 @@
-# Paper template for the pinga-lab (*replace with paper title*)
+# Dimensional Speech Emotion Recognition Using Acoustic Features and Word Embeddings using Multitask Learning
 
 by
 Bagus Tris Atmaja
-Author 2,
-etc
+Masato Akagi
 
 > This is a template for papers that use Python code and Jupyter notebooks to
 > generate their results (though it can be adapted to use other technologies).
