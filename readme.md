@@ -75,6 +75,13 @@ dependencies in it:
 
     pip3.6 venv REPO_NAME
 
+## Citation
+
+```
+B. T. Atmaja and M. Akagi, “Dimensional speech emotion recognition from speech 
+features and word embeddings by using multitask learning,” APSIPA Transactions 
+on Signal and Information Processing, vol. 9, p. e17, 2020.
+```
 
 ## Reproducing the results
 
