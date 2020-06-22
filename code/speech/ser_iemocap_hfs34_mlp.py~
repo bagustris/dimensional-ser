@@ -1,0 +1,109 @@
+# lstm_lstm: emotion recognition from speech= lstm, text=lstm
+# created for ATSIT paper 2020
+# coded by Bagus Tris Atmaja (bagus@ep.its.ac.id)
+
+import numpy as np
+import pickle
+import pandas as pd
+
+import keras.backend as K
+from keras.models import Model, Sequential
+from keras.layers import Input, Dense, Masking, CuDNNLSTM, TimeDistributed, \
+                         Bidirectional, Flatten, \
+                         Embedding, Dropout, Flatten, BatchNormalization, \
+                         RNN, concatenate, Activation
+from keras.callbacks import EarlyStopping
+from keras.preprocessing import sequence
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
+import random as rn
+import tensorflow as tf
+
+from sklearn.neural_network import MLPRegressor
+from calc_scores import calc_scores
+
+rn.seed(123)
+np.random.seed(99)
+tf.set_random_seed(1234)
+
+# load feature and labels
+feat = np.load('/home/s1820002/atsit/data/feat_34_hfs.npy')
+vad = np.load('/home/s1820002/IEMOCAP-Emotion-Detection/y_egemaps.npy')
+
+feat = feat.reshape(feat.shape[0], feat.shape[2])
+#feat = feat[:,:-1]
+
+# remove outlier, < 1, > 5
+vad = np.where(vad==5.5, 5.0, vad)
+vad = np.where(vad==0.5, 1.0, vad)
+
+# standardization
+scaled_feature = True
+
+# set Dropout
+do = 0.3
+
+if scaled_feature == True:
+    scaler = StandardScaler()
+    scaler = scaler.fit(feat)
+    scaled_feat = scaler.transform(feat)
+    feat = scaled_feat
+else:
+    feat = feat
+
+scaled_vad = True
+
+# standardization
+if scaled_vad:
+    scaler = MinMaxScaler(feature_range=(-1, 1))
+    scaler = scaler.fit(vad) #.reshape(vad.shape[0]*vad.shape[1], vad.shape[2]))
+    scaled_vad = scaler.transform(vad) #.reshape(vad.shape[0]*vad.shape[1], vad.shape[2]))
+    vad = scaled_vad 
+else:
+    vad = vad
+
+# Concordance correlation coefficient (CCC)-based loss function - using non-inductive statistics
+def ccc(gold, pred):
+    gold       = K.squeeze(gold, axis=-1)
+    pred       = K.squeeze(pred, axis=-1)
+    gold_mean  = K.mean(gold, axis=-1, keepdims=True)
+    pred_mean  = K.mean(pred, axis=-1, keepdims=True)
+    covariance = (gold-gold_mean)*(pred-pred_mean)
+    gold_var   = K.mean(K.square(gold-gold_mean), axis=-1, keepdims=True)
+    pred_var   = K.mean(K.square(pred-pred_mean), axis=-1, keepdims=True)
+    ccc        = K.constant(2.) * covariance / (gold_var + pred_var + K.square(gold_mean - pred_mean) + K.common.epsilon())
+    return ccc
+
+
+def ccc_loss(gold, pred):  
+    # input (num_batches, seq_len, 1)
+    ccc_loss   = K.constant(1.) - ccc(gold, pred)
+    return ccc_loss
+
+X_train = feat[:7869]
+X_test = feat[7869:]
+y_train = vad[:7869]
+y_test = vad[7869:]
+
+# batch_size=min(200, n_samples)
+# layers (256, 128, 64, 32, 16)
+nn = MLPRegressor(
+    hidden_layer_sizes=(256, 128, 64, 32, 16),  activation='logistic', solver='adam', alpha=0.001, batch_size='auto',
+    learning_rate='constant', learning_rate_init=0.001, power_t=0.5, max_iter=175, shuffle=True,
+    random_state=9, verbose=0, warm_start=True, momentum=0.9, nesterovs_momentum=True,
+    early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08,
+    n_iter_no_change=100)
+
+nn = nn.fit(X_train, y_train)
+y_predict = nn.predict(X_test)
+
+for i in range(0, 3):
+    ccc, _, _ = calc_scores(y_predict[:,i], y_test[:,i])
+    print("# ", ccc)
+    
+#Results:
+#  0.2924577205713226
+#  0.6357601471366577
+#  0.4625708677970867
+
+
+

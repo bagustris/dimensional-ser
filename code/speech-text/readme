@@ -1,0 +1,17 @@
+## List of files:  
+ - cal_scores.py: function to calculate CCC scores (from AVEC)
+ - cnn_cnn.py: speech: cnn, text: cnn_cnn
+ - cnn_dense.py: speech: cnn, text: dense
+ - cnn_lstm: speech: cnn, text: lstm
+ - dense_cnn.py: speech: dense, text: cnn
+ - dense_cnn: speech: dense, text: cnn
+ - lstm_cnn: speech: lstm, text: cnn
+ - lstm_lstm: speech: lstm, text:lstm
+ - lstm_lstm_do_ser: script to find optimum dropout rate on acoustic network
+ - lstm_lstm_do_ter: script to find optimum dropout rate on text network
+ - lstm_lstm_optim2: script to find optimum weighting factors with 2 parameters
+ - lstm_lstm_optim_alpha: script to find weighting factor with 3 parameters on alpha
+ - lstm_lstm_optim_beta: script to find weighting factor with 3 parameters on beta
+ - lstm_lstm_optim_gamma: script to find weighting factor with 3 parameters on alpha
+ - lstm_lstm_optimized2: script optimized MTL with 2 parameters
+ - lstm_lstm_optimized3: script optimized MTL with 3 parameters
