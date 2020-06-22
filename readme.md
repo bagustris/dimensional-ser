@@ -1,4 +1,4 @@
-# Dimensional Speech Emotion Recognition Using Acoustic Features and Word Embeddings using Multitask Learning
+# Dimensional Speech Emotion Recognition by Using Acoustic Features and Word Embeddings using Multitask Learning
 
 by
 Bagus Tris Atmaja,
