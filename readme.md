@@ -4,7 +4,7 @@ by
 Bagus Tris Atmaja,
 Masato Akagi
 
-This paper has been published for publication in *APSIPA Transaction on Signal and Information Processing*.
+This paper has been published in *APSIPA Transaction on Signal and Information Processing*.
 
 
 ## Abstract
@@ -34,7 +34,7 @@ You can download a copy of all the files in this repository by cloning the
 
 or [download a zip archive](https://github.com/bagustris/dimensional-ser).
 
-A copy of the paper is also archived at * https://doi.org/10.1017/ATSIP.2020.14*
+A copy of the paper is also archived at *https://doi.org/10.1017/ATSIP.2020.14*
 
 
 ## Dependencies
@@ -58,14 +58,6 @@ dependencies in it:
 
     pip3.6 venv REPO_NAME
 
-## Citation
-
-```
-B. T. Atmaja and M. Akagi, “Dimensional speech emotion recognition from speech 
-features and word embeddings by using multitask learning,” APSIPA Transactions 
-on Signal and Information Processing, vol. 9, p. e17, 2020.
-```
-
 ## Reproducing the results
 Since the dataset is not included, it is difficult to reproduce the result.
 However, the plot in the paper can be reproduced from the csv file in data 
@@ -81,7 +73,10 @@ The manuscript text is not open source. The authors reserve the rights to the
 article content, which is currently submitted for publication in the
 APSIPA Transaction on Signal and Information Processing.
 
+## Citation
 
-## References
-
-[1] https://github.com/pinga-lab/paper-template
+```
+B. T. Atmaja and M. Akagi, “Dimensional speech emotion recognition from speech 
+features and word embeddings by using multitask learning,” APSIPA Transactions 
+on Signal and Information Processing, vol. 9, p. e17, 2020.
+```
