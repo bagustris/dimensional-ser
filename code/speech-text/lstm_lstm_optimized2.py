@@ -39,7 +39,7 @@ x_train_text = np.load(path+'x_train_text.npy')
 g_word_embedding_matrix = np.load(path+'g_word_embedding_matrix.npy')
 
 # other parameters
-MAX_SEQUENCE_LENGTH = False
+MAX_SEQUENCE_LENGTH = 554
 EMBEDDING_DIM = 300
 nb_words = 3438
 
