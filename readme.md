@@ -73,7 +73,7 @@ use and modify the code, without warranty, so long as you provide attribution
 to the authors. See `LICENSE.md` for the full license text.
 
 The manuscript text is not open source. The authors reserve the rights to the
-article content, which is currently submitted for publication in the
+article content, which is currently published in the journal of
 APSIPA Transaction on Signal and Information Processing.
 
 ## Citation
